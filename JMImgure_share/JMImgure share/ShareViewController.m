@@ -8,8 +8,6 @@
 
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "ShareViewController.h"
-#import "RWTImgurService.h"
-#import "RWTImgurImage.h"
 
 @interface ShareViewController ()
 
@@ -28,7 +26,16 @@
   }
 
   //这里的kUTTypeImage代指@"public.image"，也就是从相册获取的图片类型
-  //这里也可以进行后续的添加工组，如在Safari中打开，则应该拷贝保存当前网页的链接
+  //这里的kUTTypeURL代指网站链接，如在Safari中打开，则应该拷贝保存当前网页的链接
+  if ([itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypeURL]) {
+    [itemProvider loadItemForTypeIdentifier:(NSString *)kUTTypeURL options:nil completionHandler:^(id<NSSecureCoding>  _Nullable item, NSError * _Null_unspecified error) {
+      if (!error) {
+        //对itemProvider夹带着的URL进行解析
+        NSURL *url = (NSURL *)item;
+        [UIPasteboard generalPasteboard].URL = url;
+      }
+    }];
+  }
   if ([itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypeImage]) {
     [itemProvider loadItemForTypeIdentifier:(NSString *)kUTTypeImage options:nil completionHandler:^(id<NSSecureCoding>  _Nullable item, NSError * _Null_unspecified error) {
       if (!error) {
@@ -58,11 +65,14 @@
 //在这里设置弹出sheet的底部，要求用SLComposeSheetConfigurationItem的对象
 - (NSArray *)configurationItems {
   SLComposeSheetConfigurationItem *configItem = [[SLComposeSheetConfigurationItem alloc] init];
-  configItem.title = @"链接将被拷贝到剪贴板";
+  configItem.value = @"链接将被拷贝到剪贴板";
   return @[configItem];
 }
 
 - (void)shareImage {
   //在这里写图片上传的代码
+  [self.extensionContext completeRequestReturningItems:@[] completionHandler:^(BOOL expired) {
+    NSLog(@"%d", expired);
+  }];
 }
 @end
