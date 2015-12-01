@@ -20,7 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // Override point for customization after application launch.
 #warning 在这里设置成你的CLIENT ID
-  [RWTImgurService setClientId:@"8a45300c7f22a24"];
+  [RWTImgurService setClientId:@"CLIENT ID"];
   
   [[UITabBar appearance] setTintColor:[UIColor imgvueGreen]];
   [[UINavigationBar appearance] setTintColor:[UIColor imgvueGreen]];

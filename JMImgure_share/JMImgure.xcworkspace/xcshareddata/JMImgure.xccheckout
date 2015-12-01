@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>1BF5AA33-C455-4122-8F6B-DB0B24BD1ED6</string>
+	<key>IDESourceControlProjectName</key>
+	<string>JMImgure</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>AE46E716DB292CE68A5E5148BA9125FF1F61E956</key>
+		<string>https://github.com/Jack--Ma/JMImgure.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>JMImgure_share/JMImgure.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>AE46E716DB292CE68A5E5148BA9125FF1F61E956</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Jack--Ma/JMImgure.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>AE46E716DB292CE68A5E5148BA9125FF1F61E956</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AE46E716DB292CE68A5E5148BA9125FF1F61E956</string>
+			<key>IDESourceControlWCCName</key>
+			<string>JMImgure</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -20,9 +20,6 @@
 @implementation ShareViewController
 
 - (void)viewDidLoad {
-#warning 在这里设置你的CLIENT ID
-  [RWTImgurService setClientId:@"8a45300c7f22a24"];
-  
   //获取inputItems，在这里itemProvider是你要分享的图片
   NSExtensionItem *firstItem = self.extensionContext.inputItems.firstObject;
   NSItemProvider *itemProvider;
@@ -31,20 +28,14 @@
   }
 
   //这里的kUTTypeImage代指@"public.image"，也就是从相册获取的图片类型
+  //这里也可以进行后续的添加工组，如在Safari中打开，则应该拷贝保存当前网页的链接
   if ([itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypeImage]) {
-    //对itemProvider夹带着的图片进行解析
     [itemProvider loadItemForTypeIdentifier:(NSString *)kUTTypeImage options:nil completionHandler:^(id<NSSecureCoding>  _Nullable item, NSError * _Null_unspecified error) {
       if (!error) {
+        //对itemProvider夹带着的图片进行解析
         NSURL *url = (NSURL *)item;
         NSData *imageData = [NSData dataWithContentsOfURL:url];
         self.image = [UIImage imageWithData:imageData];
-      } else {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"无法加载图片" message:@"请尝试其他图片" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-          [self dismissViewControllerAnimated:YES completion:nil];
-        }];
-        [alert addAction:action];
-        [self presentViewController:alert animated:YES completion:nil];
       }
     }];
   }
@@ -72,26 +63,6 @@
 }
 
 - (void)shareImage {
-  NSURLSession *defaultSession = [RWTImgurService sharedInstance].session;
-  NSURLSessionConfiguration *defaultConfig = defaultSession.configuration;
-  NSDictionary *defaultHeaders = defaultConfig.HTTPAdditionalHeaders;
-  
-  NSURLSessionConfiguration *backgroundConfig = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"group.qq100858433.JMImgvue.backgroundsession"];
-  backgroundConfig.sharedContainerIdentifier = @"group.qq100858433.JMImgvue";
-  backgroundConfig.HTTPAdditionalHeaders = defaultHeaders;
-  
-  NSURLSession *backgroundSession = [NSURLSession sessionWithConfiguration:backgroundConfig delegate:[RWTImgurService sharedInstance] delegateQueue:[NSOperationQueue mainQueue]];
-  
-  [[RWTImgurService sharedInstance] uploadImage:self.image session:backgroundSession title:self.contentText completion:^(RWTImgurImage *image, NSError *error) {
-    if (!error) {
-      [UIPasteboard generalPasteboard].URL = image.link;
-      NSLog(@"Image shared: %@", image.link.absoluteString);
-    } else {
-      NSLog(@"Error sharing image: %@", error);
-    }
-  } progressCallback:^(float progress) {
-    NSLog(@"Upload progress for extension: %f", progress);
-  }];
-  
+  //在这里写图片上传的代码
 }
 @end

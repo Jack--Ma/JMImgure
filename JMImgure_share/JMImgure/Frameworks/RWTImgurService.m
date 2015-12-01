@@ -95,26 +95,6 @@ static NSString * const kRWTImgurServiceAPIBaseURLString = @"https://api.imgur.c
     NSLog(@"====%@", [error userInfo]);
   }];
   [operation start];
-//  
-//  NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//    NSError *jsonError;
-//    NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data
-//                                                                 options:NSJSONReadingAllowFragments
-//                                                                   error:&jsonError];
-//    NSArray *imagesResponse = responseDict[@"data"];
-//    
-//    NSMutableArray *images = [NSMutableArray array];
-//    for (NSDictionary *imageDict in imagesResponse) {
-//      if (![imageDict[@"is_album"] boolValue]) { // no album support
-//        RWTImgurImage *image = [[RWTImgurImage alloc] initWithDictionary:imageDict];
-//        [images addObject:image];
-//      }
-//    }
-//    
-//    completion(images, error);
-//  }];
-//  
-//  [task resume];
 }
 
 - (void)uploadImage:(UIImage *)image title:(NSString *)title completion:(RWTImgurUploadCompletion)completion progressCallback:(RWTImgurProgressCallback)progressCallback {
@@ -144,8 +124,13 @@ static NSString * const kRWTImgurServiceAPIBaseURLString = @"https://api.imgur.c
   NSString *uuidString = [[NSUUID UUID] UUIDString];
   
   NSURL *imageToUploadUrl = [savedImageService saveImageToUpload:image name:uuidString];
-  
-  NSURLSessionUploadTask *task = [sessionToUse uploadTaskWithRequest:request fromFile:imageToUploadUrl];
+
+  NSURLSessionTask *task = [session uploadTaskWithRequest:request fromFile:imageToUploadUrl completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    //这里上传有问题
+    if (error) {
+      NSLog(@"%@", [error userInfo]);
+    }
+  }];
   
   if (completion) {
     [self.completionCallbacks setObject:[completion copy] forKey:task];
