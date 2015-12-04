@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C27e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vwf-za-k0j">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Photo Editing View Controller-->
+        <scene sceneID="pgy-AX-DUv">
+            <objects>
+                <viewController id="Vwf-za-k0j" customClass="PhotoEditingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="f6F-RB-ZFa"/>
+                        <viewControllerLayoutGuide type="bottom" id="A66-ta-ESD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VAk-8D-yr0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nd4-Jo-JDJ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="554"/>
+                                <animations/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgY-Zq-f9C">
+                                <rect key="frame" x="20" y="562" width="30" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="3ms-oU-lmx"/>
+                                    <constraint firstAttribute="width" constant="30" id="OEA-iU-Gc8"/>
+                                </constraints>
+                                <state key="normal" title="撤销">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="undo:" destination="Vwf-za-k0j" eventType="touchUpInside" id="gwj-NG-r6E"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SpN-Vc-GbZ">
+                                <rect key="frame" x="520" y="562" width="60" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2uO-AC-Add"/>
+                                    <constraint firstAttribute="width" constant="60" id="kNA-Sl-Lhd"/>
+                                </constraints>
+                                <state key="normal" title="添加效果">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addFilter:" destination="Vwf-za-k0j" eventType="touchUpInside" id="Q8K-Eh-yhq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Nd4-Jo-JDJ" firstAttribute="leading" secondItem="VAk-8D-yr0" secondAttribute="leadingMargin" constant="-20" id="14r-7E-Jff"/>
+                            <constraint firstItem="SpN-Vc-GbZ" firstAttribute="trailing" secondItem="VAk-8D-yr0" secondAttribute="trailingMargin" id="2pc-Qi-eYi"/>
+                            <constraint firstItem="Nd4-Jo-JDJ" firstAttribute="top" secondItem="VAk-8D-yr0" secondAttribute="topMargin" id="9cn-bw-g9j"/>
+                            <constraint firstItem="A66-ta-ESD" firstAttribute="top" secondItem="vgY-Zq-f9C" secondAttribute="bottom" constant="8" symbolic="YES" id="9nz-QK-Y2Q"/>
+                            <constraint firstItem="vgY-Zq-f9C" firstAttribute="leading" secondItem="VAk-8D-yr0" secondAttribute="leadingMargin" id="LAc-HL-dLz"/>
+                            <constraint firstItem="SpN-Vc-GbZ" firstAttribute="top" secondItem="Nd4-Jo-JDJ" secondAttribute="bottom" constant="8" id="N7N-zd-CGT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Nd4-Jo-JDJ" secondAttribute="trailing" constant="-20" id="Qmj-d4-1Jf"/>
+                            <constraint firstItem="vgY-Zq-f9C" firstAttribute="top" secondItem="Nd4-Jo-JDJ" secondAttribute="bottom" constant="8" id="UpS-WB-87P"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addButton" destination="SpN-Vc-GbZ" id="Wa5-ae-DNN"/>
+                        <outlet property="imageView" destination="Nd4-Jo-JDJ" id="eUt-6s-hlh"/>
+                        <outlet property="undoButton" destination="vgY-Zq-f9C" id="E6K-yq-VOX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tu0-Pv-56C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="683" y="-188"/>
+        </scene>
+    </scenes>
+</document>
