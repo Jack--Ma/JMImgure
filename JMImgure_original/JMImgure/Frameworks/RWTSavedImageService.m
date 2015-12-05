@@ -52,7 +52,8 @@
 }
 
 - (NSURL *)saveImageToUpload:(UIImage *)image name:(NSString *)name url:(NSURL *)url {
-  NSURL *containerURL = [self URLForDirectoryWithName:name];
+  NSString *temp = [NSString stringWithFormat:@"Images/%@", name];
+  NSURL *containerURL = [self URLForDirectoryWithName:temp];
   containerURL = [containerURL URLByAppendingPathComponent:name];
   containerURL = [containerURL URLByAppendingPathExtension:@"jpg"];
   [UIImageJPEGRepresentation(image, 1.0) writeToFile:containerURL.path atomically:YES];

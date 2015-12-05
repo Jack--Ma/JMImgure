@@ -31,8 +31,14 @@
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  self.imageFileNames = [self.savedImageService savedImageFileNames];
-  [self.savedImagesCollectionView reloadData];
+  NSArray *imageFile = [self.savedImageService savedImageFileNames];
+  NSMutableArray *tempImageFile = [NSMutableArray arrayWithCapacity:imageFile.count];
+  for (int i = 0; i < imageFile.count; i++) {
+    NSString *temp = [NSString stringWithFormat:@"%@/%@.jpg", imageFile[i], imageFile[i]];
+    if (![temp hasPrefix:@"."]) {
+      [tempImageFile addObject:temp];
+    }
+  }
 }
 
 - (void)didReceiveMemoryWarning {
